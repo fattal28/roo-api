@@ -7,6 +7,7 @@ from math import sin, cos, sqrt, atan2, radians
 
 auth = "db37117c-679d-41ae-b7cc-2c010daea9ed"
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route("/")
@@ -95,10 +96,6 @@ def shortest_path(order, rider):
     )
 
 
-# def calculateDistance(x1, y1, x2, y2):
-#     dist = math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
-#     return dist
-
 def distance(restaurantlatlong, riderlatlong):
     # approximate radius of earth in km
     R = 6373.0
@@ -150,7 +147,7 @@ def pairings(orders, riders):
             "location": {
                 "lat": riderlatlong[0],
                 "long": riderlatlong[1]
-                }
+            }
         }
         })
     return pairings
