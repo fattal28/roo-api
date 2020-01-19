@@ -141,7 +141,7 @@ def pairings(orders, riders):
                 smallest["d"] = d
                 break
             i += 1
-        pairings.append({"uid": int(str(order["id"]) + str(rider["id"]))
+        pairings.append({"uid": int(str(order["id"]) + str(rider["id"])),
                          "order": {"id": order["id"],
                                    "description": order["order_items"]},
                          "distance": d,
