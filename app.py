@@ -2,6 +2,7 @@ import json
 import math
 import requests as req
 from flask import Flask, request
+from flask_cors import CORS
 from flask_json import FlaskJSON, JsonError, json_response, as_json
 from math import sin, cos, sqrt, atan2, radians
 
