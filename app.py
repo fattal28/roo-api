@@ -141,7 +141,8 @@ def pairings(orders, riders):
                 smallest["d"] = d
                 break
             i += 1
-        pairings.append({"order": {"id": order["id"],
+        pairings.append({"uid": int(str(order["id"]) + str(rider["id"]))
+                         "order": {"id": order["id"],
                                    "description": order["order_items"]},
                          "distance": d,
                          "restaurant": {
@@ -156,7 +157,7 @@ def pairings(orders, riders):
             "location": {
                 "lat": riderlatlong[0],
                 "long": riderlatlong[1]
-                    }
+            }
         }
         })
     return pairings
