@@ -1,5 +1,6 @@
 import json
 import math
+import pickle
 import requests as req
 from flask import Flask, request
 from flask_cors import CORS
@@ -33,10 +34,10 @@ def hello_world():
 
 @app.route("/pairings/")
 def get_pairings():
-    orders = get_orders()
-    riders = get_riders()
 
-    pairs = pairings(orders[0:10], riders[0:10])
+    with open('cache.pickle', 'rb') as handle:
+        pairs = pickle.load(handle)
+
     print("Sending: ")
     if len(pairs) < 10:
         for pair in pairs:
@@ -164,5 +165,12 @@ def pairings(orders, riders):
 
 
 if __name__ == "__main__":
+    # orders = get_orders()
+    # riders = get_riders()
+
+    #pairs = pairings(orders, riders)
+    # with open("cache.pickle", "wb") as p:
+    #    pickle.dump(pairs, p, protocol=pickle.HIGHEST_PROTOCOL)
+    # print("Done")
 
     app.run(threaded=True, port=5000)
