@@ -11,6 +11,21 @@ app = Flask(__name__)
 CORS(app)
 
 
+def add_cors_headers(response):
+
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    if request.method == 'OPTIONS':
+        response.headers['Access-Control-Allow-Methods'] = 'DELETE, GET, POST, PUT'
+        headers = request.headers.get('Access-Control-Request-Headers')
+        if headers:
+            response.headers['Access-Control-Allow-Headers'] = headers
+
+    return response
+
+
+app.after_request(add_cors_headers)
+
+
 @app.route("/")
 def hello_world():
     return "Hello, World!"
@@ -90,13 +105,6 @@ def get_rider_lat_long(id):
     return (float(loc["lat"]), float(loc["long"]))
 
 
-def shortest_path(order, rider):
-    return float(
-        "{0:.5f}".format(
-            ((order[0] - rider[0]) ** 2 + (order[1] - rider[1])) ** 0.5)
-    )
-
-
 def distance(restaurantlatlong, riderlatlong):
     # approximate radius of earth in km
     R = 6373.0
@@ -148,7 +156,7 @@ def pairings(orders, riders):
             "location": {
                 "lat": riderlatlong[0],
                 "long": riderlatlong[1]
-            }
+                    }
         }
         })
     return pairings
