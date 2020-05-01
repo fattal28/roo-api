@@ -2,4 +2,4 @@
 
 ### Finds the distance between the pairs of orders and riders
 
-UI available at [github.com/adamnpeace/deliveroo-challenge](https://github.com/adamnpeace/deliveroo-challenge)
+UI available at [github.com/adamnpeace/deliveroo-app](https://github.com/adamnpeace/deliveroo-app)
